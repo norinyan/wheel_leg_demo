@@ -1,0 +1,57 @@
+global_planner:
+  ros__parameters:
+    entry:
+    - 1.6
+    - -0.9
+    - 0.0
+    - 0.0
+    exit:
+    - 3.3
+    - -0.9
+    - 0.34
+    - 0.0
+    footprint_length: 0.6
+    footprint_width: 0.78
+    goal:
+    - 9.0
+    - -0.9
+    - 0.34
+    - 0.0
+    lower_bounds:
+    - -6.0
+    - 2.0
+    - -3.0
+    - 3.0
+    obstacles:
+    - -1.5
+    - -0.9
+    - 0.3
+    - 0.6
+    - 0.8
+    - 0.6
+    - 6.2
+    - -0.9
+    - 0.64
+    - 0.6
+    - 0.8
+    - 0.6
+    once: true
+    output_dir: "/root/Projects/src/wheel_leg_demo/doc/results/3.1_\u5168\u5C40\u89C4\
+      \u5212/baseline"
+    resolution: 0.05
+    rise: 0.17
+    safety_margin: 0.05
+    stair_width: 4.0
+    stair_x: 2.0
+    start:
+    - -4.5
+    - -0.9
+    - 0.0
+    - 0.0
+    tread: 0.35
+    upper_bounds:
+    - 2.7
+    - 10.7
+    - -3.0
+    - 3.0
+    use_feedback_start: false

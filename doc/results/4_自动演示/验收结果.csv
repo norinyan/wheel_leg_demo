@@ -1,0 +1,4 @@
+case,state,simulation_duration_s,position_error_m,yaw_error_deg,upper_distance_m,wheel_checks_passed,foot_checks_passed,phase_order_passed,continuous_motion_passed,passed
+run_1,DONE,92.3,0.00529158,0.10678214427853153,6.08247,True,True,True,True,True
+run_2,DONE,92.5,0.0152485,0.13393060348521532,6.07241,True,True,True,True,True
+run_3,DONE,91.9,0.0118637,0.11184021569394643,6.07616,True,True,True,True,True

@@ -1,0 +1,2 @@
+state,reason,simulation_duration_s,position_error_m,yaw_error_rad,upper_distance_m,final_v_mps,final_w_rps,final_mode
+DONE,"Reached B in wheel mode",91.9,0.0118637,0.00195198,6.07616,0,0,wheel

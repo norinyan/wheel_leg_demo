@@ -1,0 +1,113 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gazebo 操作说明 · 软件讲解手册</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;color:#203447;background:#f5f4ef;font:17px/1.85 system-ui,"Noto Sans CJK SC",sans-serif}a{color:#126f79;text-underline-offset:4px}nav{position:sticky;top:0;z-index:5;background:#203447;color:white;display:flex;gap:24px;align-items:center;padding:14px max(24px,calc((100vw - 1100px)/2));flex-wrap:wrap}nav a{color:#fff;text-decoration:none;font-size:15px}nav strong{margin-right:auto}button{font:inherit;cursor:pointer;border:1px solid #b9c9cd;border-radius:7px;padding:7px 15px;background:white;color:#203447}button:hover,button.active{background:#126f79;color:white}nav button{font-size:14px;padding:3px 10px}main{max-width:1100px;margin:auto;padding:45px 30px}header{padding:25px 0 35px;border-bottom:2px solid #203447}h1{font-size:clamp(36px,6vw,64px);line-height:1.2;margin:15px 0}h2{font-size:30px;margin:0 0 28px}section{padding:52px 0;border-bottom:1px solid #ccd4d5}p{margin:16px 0}.eyebrow{font-size:13px;letter-spacing:2px;color:#126f79;font-weight:700}.lead{font-size:22px;color:#526574}strong{font-weight:700}code{font:14px/1.7 ui-monospace,monospace;overflow-wrap:anywhere}.code{position:relative;background:#203447;color:#e4eff4;border-radius:10px;margin:24px 0;padding:14px 20px}.code>span{font-size:12px;color:#b4c9cf}.copy{position:absolute;right:12px;top:10px;font-size:12px;padding:2px 10px}pre{overflow-x:auto;line-height:1.65;margin:14px 0 7px}.table{overflow-x:auto;margin:24px 0}table{border-collapse:collapse;width:100%;font-size:15px;background:#fff}th,td{text-align:left;border-bottom:1px solid #d8e0e1;padding:13px 16px;vertical-align:top}th{background:#e5eeed;white-space:nowrap}td{min-width:130px}figure{margin:30px 0}figure img{width:100%;border-radius:10px;cursor:zoom-in}figcaption{font-size:13px;color:#62737b;text-align:center}.exhibit{background:#e8eeeb;border:1px solid #cbd8d3;border-radius:12px;padding:24px;margin:30px 0}.choices{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap}.pipeline{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.pipeline span,.result{padding:12px 20px;border:1px solid #adbfbc;background:white;border-radius:6px;text-align:center}.arrow{text-align:center;padding:12px;color:#126f79}svg,video{width:100%;display:block;border-radius:8px}video{background:#172a38}label{display:flex;align-items:center;gap:15px;flex-wrap:wrap}input[type=range]{flex:1;min-width:120px;accent-color:#126f79}output{min-width:45px}dialog{border:0;padding:10px;max-width:96vw;max-height:95vh;border-radius:10px}dialog::backdrop{background:#102334dd}dialog img{max-width:90vw;max-height:83vh}footer{font-size:13px;color:#526574;padding:25px 0}.present header,.present section{display:none}.present section.current{display:block;border:0;padding-top:25px}.present main>p{display:none}.present .exhibit{break-inside:avoid}.present nav{background:#126f79}@media(max-width:650px){main{padding:20px 17px}nav{gap:12px;padding:12px 17px}nav strong{width:100%}body{font-size:16px}.exhibit{padding:16px}h2{font-size:26px}}@media print{nav,.copy,video,dialog{display:none}body{background:white;font-size:12px}main{padding:0}section,.present section{display:block!important;padding:20px 0}header{padding:0}.exhibit{break-inside:avoid}pre{white-space:pre-wrap}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}</style><nav><strong>GAZEBO / 操作手册</strong><a href="#c1">01 简介</a><a href="#c2">02 操作</a><a href="#c3">03 文件说明</a><a href="#c4">04 场景与机器人搭建</a><button id="present">分章讲解</button></nav><main><header><p class="eyebrow">软件讲解 / 本地交互手册</p><h1>Gazebo 操作说明</h1><p class="lead">从打开仿真，到看懂文件，再到搭建自己的机器人。</p></header>
+<p>适用版本：<strong>Gazebo Classic 11 + ROS 2 Humble</strong>。本手册用于软件入门与讲解，其他版本的界面、命令和插件可能不同。Classic 已于 2025 年 1 月结束维护；当前项目沿用现有环境。</p>
+<p><a href="Gazebo操作说明.html">打开图文交互版</a> · <a href="wheel_leg_demo/doc/开发与演示手册.md">查看项目开发与演示手册</a></p>
+<section id="c1"><h2>1. 简介</h2>
+<p>Gazebo 是机器人仿真软件：在虚拟场景中放置机器人、障碍物和传感器，观察运动、碰撞及传感器数据，用于开发和验证机器人程序。</p>
+<p>它能模拟重力、摩擦、刚体接触、关节和相机等传感器。是否真的进行了这些模拟，取决于模型、物理参数和插件的配置；画面里机器人在动，不代表已经实现真实动力学控制。</p>
+<p><strong>Gazebo 负责虚拟世界；ROS 2 负责程序之间的通信和算法组织。</strong> 两者通过插件连接：Gazebo 向 ROS 2 提供状态和传感器数据，ROS 2 向仿真发送速度、关节或轨迹指令。Gazebo 可以单独运行；ROS 2 不需要 roscore。</p>
+<p><code>gzserver</code> 是服务端，运行世界、物理和插件；<code>gzclient</code> 是图形客户端，显示场景与提供操作界面。RViz 是 ROS 数据可视化工具，不负责物理仿真，也不是打开 Gazebo 的前置条件。</p>
+<p>本项目使用 Gazebo 展示轮足机器人的规划与动作。规划结果由算法计算，执行器按指令更新模型和关节位姿，属于<strong>运动学演示</strong>，没有实现接触平衡与电机力矩控制。</p>
+<figure><img src="wheel_leg_demo/doc/results/3.0_地图点位/全景.png" alt="当前项目的真实 Gazebo 场景" loading="lazy"><figcaption>当前项目的真实 Gazebo 场景 · 真实项目截图，点击放大</figcaption></figure>
+<p>下方交互版提供软件关系图；最后一章的视频展示本项目效果，不是 Gazebo 软件操作录像。</p>
+<div class="exhibit"><p class="eyebrow">点击了解职责 · 教学示意</p><div class="choices" id="roles"><button data-role="ros">ROS 2 算法</button><b>⇄</b><button data-role="plugin">Gazebo 插件</button><b>⇄</b><button data-role="gazebo">Gazebo 世界</button></div><p id="roleText" aria-live="polite">点击任一模块，查看它在系统中的职责。</p></div></section><section id="c2"><h2>2. 操作</h2>
+<p><strong>启动：本机终端执行。</strong> Docker 服务应处于 active；如未启动，在本机执行 sudo systemctl start docker。</p>
+<div class="code"><span>bash</span><button class="copy">复制</button><pre><code>systemctl is-active docker
+xhost +SI:localuser:root
+docker start hfun_humble_cuda_dev
+docker exec -it -e DISPLAY=&quot;$DISPLAY&quot; hfun_humble_cuda_dev bash --norc</code></pre></div>
+<p><strong>准备环境：每个新容器终端执行。</strong> 以下设置只影响当前终端及其启动的程序；ROS 2 通信设置保持一致。</p>
+<div class="code"><span>bash</span><button class="copy">复制</button><pre><code>export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+source /opt/ros/humble/setup.bash
+source /usr/share/gazebo/setup.sh
+export ROS_DOMAIN_ID=76
+export ROS_LOCALHOST_ONLY=1
+cd /root/Projects/gazebo/gazebo_manual/wheel_leg_demo
+source install/setup.bash</code></pre></div>
+<p><strong>下面三种启动方式选一种，同一默认端口不要重复启动。</strong></p>
+<div class="table"><table><tr><th>目的</th><th>命令（容器内）</th><th>说明</th></tr><tr><td>打开空场景</td><td>gazebo</td><td>启动服务端和图形界面，不加载 ROS 插件</td></tr><tr><td>打开指定场景</td><td>gazebo /root/Projects/gazebo/gazebo_manual/wheel_leg_demo/src/wheel_leg_demo/worlds/two_steps.world</td><td>查看场景文件；不会自动装入 Xacro 机器人和项目执行器</td></tr><tr><td>打开完整项目</td><td>ros2 launch wheel_leg_demo demo.launch.py</td><td>组装场景、机器人和执行插件，启动仿真</td></tr></table></div>
+<p>完整项目首次使用或修改 C++ 后，先在 /root/Projects/gazebo/gazebo_manual/wheel_leg_demo 执行：</p>
+<div class="code"><span>bash</span><button class="copy">复制</button><pre><code>colcon build --symlink-install --base-paths src --packages-select wheel_leg_demo
+source install/setup.bash</code></pre></div>
+<p><strong>界面怎么看：</strong> 左侧 World 查看模型、连杆、关节及属性；Insert 插入模型；中央为三维视口；上方工具栏用于选择、移动、旋转等；底部提供播放/暂停、单步及时间信息。在线模型库可能需要网络，本地模型可离线使用。</p>
+<div class="table"><table><tr><th>操作</th><th>鼠标、键盘或菜单</th><th>作用</th></tr><tr><td>平移观察视角</td><td>在空白处按住鼠标左键拖动</td><td>移动观察位置；选择模型后注意不要误用模型移动工具</td></tr><tr><td>旋转观察视角</td><td>按住鼠标中键拖动</td><td>绕观察点旋转</td></tr><tr><td>拉近或拉远</td><td>鼠标滚轮；或右键拖动</td><td>改变观察距离</td></tr><tr><td>聚焦模型</td><td>双击模型</td><td>将视角转向模型</td></tr><tr><td>跟随模型</td><td>模型右键菜单中的 Follow（如当前配置提供）</td><td>观察移动中的机器人</td></tr><tr><td>移动、旋转模型</td><td>选择工具栏对应工具，拖动坐标轴</td><td>修改模型位姿；搭建时建议先暂停</td></tr><tr><td>暂停、继续</td><td>底部播放/暂停按钮</td><td>停止或推进仿真时间</td></tr><tr><td>单步</td><td>暂停后点击底部单步按钮</td><td>推进一个仿真步，不是执行一个机器人动作</td></tr><tr><td>复位</td><td>Edit 菜单中的 Reset Model Poses / Reset World</td><td>前者复位模型位姿，后者还会重置世界时间；不重置外部 ROS 节点状态</td></tr><tr><td>保存场景</td><td>File → Save World As；Ctrl+S 保存</td><td>保存世界；不自动同步源 Xacro、YAML 或 ROS 程序</td></tr><tr><td>结束前台程序</td><td>启动终端 Ctrl+C</td><td>停止当前 launch 或 Gazebo 进程</td></tr></table></div>
+<p>鼠标操作按默认相机控制说明；自定义配置可能不同。菜单名称及工具栏提示是当前安装版本的操作依据。</p>
+<p><strong>常用命令：</strong> Gazebo 命令检查仿真；ROS 2 命令检查插件提供的通信接口。先 list，再对实际存在的名字调用 info、echo 或 service。</p>
+<div class="code"><span>bash</span><button class="copy">复制</button><pre><code># Gazebo Classic：版本、当前模型与 Gazebo 自己的传输话题
+gazebo --version
+gz model --list
+gz topic -l
+
+# ROS 2：节点、话题、服务与参数
+ros2 node list
+ros2 topic list
+ros2 topic info /wheel_leg_demo/odom
+ros2 topic echo /wheel_leg_demo/odom --once
+ros2 service list -t
+ros2 param list /robot_state_publisher</code></pre></div>
+<p>Gazebo Transport 的 gz topic 与 ROS 2 的 ros2 topic 属于不同通信系统，名字不一定一致。本项目 ROS 话题需要通过项目 launch 加载插件才会出现。</p>
+<div class="code"><span>bash</span><button class="copy">复制</button><pre><code># 本项目已加载 gazebo_ros 时：暂停、恢复仿真
+ros2 service call /pause_physics std_srvs/srv/Empty &quot;{}&quot;
+ros2 service call /unpause_physics std_srvs/srv/Empty &quot;{}&quot;
+
+# 项目自定义：查看动作状态、变足式、变轮式
+ros2 topic echo /wheel_leg_demo/status --once
+ros2 service call /wheel_leg_demo/to_leg std_srvs/srv/Trigger &quot;{}&quot;
+ros2 service call /wheel_leg_demo/to_wheel std_srvs/srv/Trigger &quot;{}&quot;</code></pre></div>
+<p>项目自定义服务不是 Gazebo 的通用功能。Accepted 表示接收，完成情况需要查询状态；不要与正在运行的自动任务同时发送手动动作。完整规划和演示命令见项目开发与演示手册。</p>
+<p><strong>关闭：</strong> 有任务时先停止任务，再在规划、仿真各自的启动终端按 Ctrl+C；exit 离开容器。只关闭 Gazebo 窗口可能仍保留服务端。需要停止整个容器时，在本机执行 docker stop hfun_humble_cuda_dev。</p>
+<p>项目运行中优先使用项目的 reset_demo（需启动任务节点）或 reset 服务；Gazebo 世界复位不会同步重置规划器与任务状态。</p>
+</section><section id="c3"><h2>3. 文件说明</h2>
+<p>文件扩展名是入口，实际要看它描述的是世界、模型、启动过程还是参数。world 文件通常也使用 SDF 格式。</p>
+<div class="table"><table><tr><th>文件</th><th>功能</th><th>主要内容</th></tr><tr><td>.world</td><td>定义整个仿真世界</td><td>地面、光源、物理设置、模型、世界插件</td></tr><tr><td>.sdf</td><td>描述世界或模型，Gazebo 原生格式</td><td>model、link、joint、sensor、plugin 等</td></tr><tr><td>.urdf</td><td>描述机器人的连杆和关节树</td><td>link、joint、visual、collision、inertial</td></tr><tr><td>.urdf.xacro</td><td>用变量、宏和表达式组织 URDF</td><td>重复部件、尺寸参数；加载前展开为 URDF</td></tr><tr><td>model.config</td><td>Gazebo 模型库的描述入口</td><td>模型名称、版本及对应的 SDF 文件</td></tr><tr><td>.dae / .stl / .obj</td><td>外观或碰撞网格资源</td><td>三维形状；不包含完整关节和控制逻辑</td></tr><tr><td>.launch.py</td><td>ROS 2 启动文件</td><td>启动节点、Gazebo、加载参数和模型</td></tr><tr><td>.yaml</td><td>参数配置</td><td>尺寸、初始位姿、算法限制等；需要程序读取才生效</td></tr><tr><td>.cpp / .so</td><td>插件源码 / 编译后的动态库</td><td>传感器、状态接口、驱动或自定义仿真行为</td></tr><tr><td>CMakeLists.txt / package.xml</td><td>ROS 2 工程构建与依赖</td><td>编译目标、依赖、运行资源安装位置</td></tr></table></div>
+<p><strong>模型内部的基本关系：</strong> model 是整体；link 是刚性部件；joint 连接部件并规定运动方向、类型和限位。visual 决定看见什么，collision 决定碰撞形状，inertial 定义质量与惯性。外观网格不等于碰撞模型。</p>
+<p>本项目对应文件：</p>
+<div class="code"><span>text</span><button class="copy">复制</button><pre><code>src/wheel_leg_demo/
+├── worlds/two_steps.world       场景：平台、楼梯、障碍物
+├── urdf/robot.urdf.xacro         机器人：部件与关节
+├── config/demo.yaml             点位、机器人与规划参数
+├── launch/demo.launch.py        组装并启动仿真
+├── launch/planning.launch.py    启动规划与任务
+├── src/demo_node.cpp            运动学执行插件源码
+├── CMakeLists.txt               编译和资源安装
+└── package.xml                 包信息与依赖</code></pre></div>
+<p>demo.launch.py 会展开 Xacro，用 gz sdf 转换成 SDF，再把机器人和执行插件加入临时 world。因此只打开源 two_steps.world，不会得到完整项目。修改临时 world 不会改变项目源码。</p>
+<div class="exhibit"><p class="eyebrow">文件如何配合 · 教学示意</p><div class="pipeline"><span>Xacro → URDF → SDF</span><span>World + YAML</span><span>编译后的插件 .so</span></div><div class="arrow">↓ demo.launch.py 组装与启动 ↓</div><div class="result">临时 World → gzserver 仿真 / gzclient 显示</div></div></section><section id="c4"><h2>4. 场景与机器人搭建</h2>
+<p><strong>先定单位与坐标。</strong> 长度用米、角度用弧度、质量用千克。本项目 world 的 z 向上；机器人本体约定 x 向前、y 向左、z 向上。SDF pose 的顺序为 x y z roll pitch yaw；模型位姿与连杆内部位姿通常属于不同层级的坐标。</p>
+<p><strong>创建场景与障碍物：</strong> 打开空场景，暂停，通过工具栏插入 Box、Sphere 等基本形状，选择后用移动/旋转工具布置，用属性面板检查尺寸与位姿；保存为 world。需要多个部件组成一个模型时，使用 Edit → Model Editor。适合先直观看布局，再将参数写回源文件。</p>
+<p>下面是可以直接保存并打开的独立场景。地面上有一个 0.6 × 0.8 × 0.6 m 的静态障碍物；其中心 z=0.3 m，所以底面刚好接地。</p>
+<div class="code"><span>xml</span><button class="copy">复制</button><pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;sdf version=&quot;1.6&quot;&gt;
+  &lt;world name=&quot;practice&quot;&gt;
+    &lt;include&gt;&lt;uri&gt;model://sun&lt;/uri&gt;&lt;/include&gt;
+    &lt;include&gt;&lt;uri&gt;model://ground_plane&lt;/uri&gt;&lt;/include&gt;
+    &lt;model name=&quot;obstacle&quot;&gt;
+      &lt;static&gt;true&lt;/static&gt;
+      &lt;pose&gt;1 0 0.3 0 0 0&lt;/pose&gt;
+      &lt;link name=&quot;body&quot;&gt;
+        &lt;collision name=&quot;collision&quot;&gt;
+          &lt;geometry&gt;&lt;box&gt;&lt;size&gt;0.6 0.8 0.6&lt;/size&gt;&lt;/box&gt;&lt;/geometry&gt;
+        &lt;/collision&gt;
+        &lt;visual name=&quot;visual&quot;&gt;
+          &lt;geometry&gt;&lt;box&gt;&lt;size&gt;0.6 0.8 0.6&lt;/size&gt;&lt;/box&gt;&lt;/geometry&gt;
+        &lt;/visual&gt;
+      &lt;/link&gt;
+    &lt;/model&gt;
+  &lt;/world&gt;
+&lt;/sdf&gt;</code></pre></div>
+<p>保存到容器 /root/Projects/practice.world 后执行 gazebo /root/Projects/practice.world。sun、ground_plane 需要本地标准模型资源可用；本例不含 ROS 插件。固定平台和楼梯通常设 static=true，避免作为自由物体掉落。</p>
+<p><strong>搭建机器人：</strong> 先用盒子、圆柱等基本形状表示机身、轮子与腿；每个独立运动的刚体建一个 link，再用 joint 连接。轮轴用 continuous 或 revolute，直线收轮机构可用 prismatic，固定部件用 fixed。用轴向、原点、限位确定关节如何运动，最后添加质量、惯性和碰撞，再接入驱动或自定义插件。</p>
+<p>下面说明 URDF 轮关节的连接方式，片段依赖已定义的 base_link 和 left_wheel，不能单独作为完整机器人加载。</p>
+<div class="code"><span>xml</span><button class="copy">复制</button><pre><code>&lt;joint name=&quot;left_wheel_joint&quot; type=&quot;continuous&quot;&gt;
+  &lt;parent link=&quot;base_link&quot;/&gt;
+  &lt;child link=&quot;left_wheel&quot;/&gt;
+  &lt;origin xyz=&quot;0 0.21 0&quot; rpy=&quot;0 0 0&quot;/&gt;
+  &lt;axis xyz=&quot;0 1 0&quot;/&gt;
+&lt;/joint&gt;</code></pre></div>
+<p>关节定义只规定连接与允许的运动，<strong>不会自己转动</strong>。ROS 的 robot_state_publisher 根据机器人描述和关节状态发布 TF，也不驱动 Gazebo；需要插件或控制器实际执行指令。当前项目使用自定义运动学插件，通用物理驱动机器人则需要相应轮驱动、关节控制及物理参数。</p>
+<p><strong>修改现有项目：</strong> 在 two_steps.world 修改场景几何，在 robot.urdf.xacro 修改机器人，在 demo.yaml 同步规划器使用的障碍物、范围和尺寸。修改 C++ 后重新编译；模型、配置和 launch 改动后重启仿真。改变机器人的结构尺寸还需要检查执行器与足式规划的几何假设。</p>
+<p>例如改变楼梯高度，必须同时核对 world 中两级台阶及上平台的尺寸和中心高度，以及 YAML 的 scene.stair.rise、上平台点位高度；不能只改其中一个文件。GUI 中拖动障碍物不会自动更新规划器的已知地图。</p>
+<p>检查结果时，先看外观和尺寸，再查看碰撞几何、关节轴与初始位姿；真实动力学仿真还需检查质量、惯量、接触与驱动。保存源码后重启，确认模型没有穿插、楼梯连续、机器人站在预期位置。</p>
+<p><a href="wheel_leg_demo/doc/results/4_自动演示/三画面同步演示_1080p.mp4">观看本项目三画面演示视频</a></p>
+<p>视频展示轮式行驶、变形、足式上楼及规划线；它说明本项目如何使用 Gazebo，不代表已完成真实物理步态控制。</p>
+<div class="exhibit"><p class="eyebrow">动手理解 Link 与 Joint · 教学示意，不连接 Gazebo</p><svg id="jointDemo" viewBox="0 0 720 270" role="img" aria-label="两段连杆和关节角度示意"><path d="M30 230H690" stroke="#becbd4" stroke-width="2"/><rect x="80" y="85" width="150" height="120" rx="12" fill="#203e55"/><text x="105" y="150" fill="white">base_link</text><g id="arm"><rect x="225" y="126" width="190" height="28" rx="14" fill="#da8a38"/><circle cx="230" cy="140" r="13" fill="#fff" stroke="#203e55" stroke-width="6"/><text x="285" y="117" fill="#203e55">child link</text></g><text x="80" y="257" fill="#526574">连杆是刚体，关节定义相对运动。</text></svg><label>关节角度 <input id="angle" type="range" min="-70" max="70" value="0"> <output id="angleValue">0°</output></label><p>拖动滑块只改变示意图的关节角度。模型真正运动，还需要驱动插件或控制器。</p></div>
+<div class="exhibit"><p class="eyebrow">项目实例 · 同步演示录像</p><video controls preload="metadata" poster="wheel_leg_demo/doc/results/4_自动演示/展示预览.jpg"><source src="wheel_leg_demo/doc/results/4_自动演示/三画面同步演示_1080p.mp4" type="video/mp4"></video><p>左上跟随视角，右上俯视，下方规划信息。运动学演示，非物理控制验证。</p></div></section><footer>本地手册 · 四章内容 · 不需要启动 ROS 或网页服务器 · 分章讲解可用 ← → 翻章、Esc 退出。视频使用相对路径，请保留 lab 目录结构。</footer></main><dialog id="zoom"><button id="closeZoom">关闭大图</button><br><img id="large" alt=""></dialog><script>const $=s=>document.querySelector(s);let chapter=0;const sections=[...document.querySelectorAll('section')];function show(n){chapter=Math.max(0,Math.min(3,n));sections.forEach((s,i)=>s.classList.toggle('current',i===chapter));if(document.body.classList.contains('present'))window.scrollTo(0,0)}show(0);$('#present').onclick=()=>{document.body.classList.toggle('present');$('#present').textContent=document.body.classList.contains('present')?'退出讲解':'分章讲解';show(chapter)};document.querySelectorAll('nav a').forEach((a,i)=>a.onclick=()=>show(i));document.addEventListener('keydown',e=>{if(/INPUT|TEXTAREA|VIDEO/.test(e.target.tagName)||!document.body.classList.contains('present'))return;if(e.key==='ArrowRight')show(chapter+1);if(e.key==='ArrowLeft')show(chapter-1);if(e.key==='Escape'){$('#present').click()}});const info={ros:'ROS 2：运行规划、任务与控制程序，通过话题和服务传递数据。它本身不是物理引擎。',plugin:'插件：在仿真内部运行，把状态或传感器数据送到 ROS 2，接收指令并执行相应行为。',gazebo:'Gazebo：加载模型与世界，运行物理或自定义运动学逻辑，并通过客户端显示画面。'};document.querySelectorAll('[data-role]').forEach(b=>b.onclick=()=>{$('#roleText').textContent=info[b.dataset.role];document.querySelectorAll('[data-role]').forEach(x=>x.classList.toggle('active',x===b))});$('#angle').oninput=e=>{const v=Number(e.target.value);$('#arm').setAttribute('transform',`rotate(${-v} 230 140)`);$('#angleValue').textContent=v+'°'};document.querySelectorAll('.copy').forEach(b=>b.onclick=async()=>{const t=b.parentNode.querySelector('code').textContent;try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(t);else{const a=document.createElement('textarea');a.value=t;document.body.append(a);a.select();const ok=document.execCommand('copy');a.remove();if(!ok)throw Error()}b.textContent='已复制'}catch{b.textContent='请选中文字复制'}setTimeout(()=>b.textContent='复制',1800)});document.querySelectorAll('figure img').forEach(im=>im.onclick=()=>{$('#large').src=im.src;$('#large').alt=im.alt;$('#zoom').showModal()});$('#closeZoom').onclick=()=>$('#zoom').close();</script></html>

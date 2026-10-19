@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-15",
+  "source_run": "report_video_final",
+  "presentation": "recorded simulation poses rendered offline; same run for both cameras; no new planning execution during replay",
+  "execution": "kinematic demonstration with Gazebo pose feedback; not contact/balance control",
+  "layout": "following 1080p camera + fixed overhead 1080p camera + animated planning map and telemetry on 4K canvas",
+  "planning_overlays": {
+    "blue": "wheel-mode global reference",
+    "purple": "leg-mode global reference",
+    "green": "current local wheel trajectory, keyed by generation simulation time",
+    "footprints": "planned landing positions, visible from climbing phase"
+  },
+  "timing": {
+    "simulation_start_s": 217.2,
+    "task_duration_s": 93.0,
+    "video_leading_hold_s": 2,
+    "video_trailing_hold_s": 2,
+    "camera_frame_indices_identical": true,
+    "max_pose_sample_time_error_s": 0.01099999999999568,
+    "telemetry": "10 Hz recorded feedback, previous available sample displayed; local path generation stamps retained",
+    "display_speed": "body planar speed and yaw rate derived by central differences of recorded Gazebo poses; original executor v/w are wheel-command feedback only"
+  },
+  "result": {
+    "state": "DONE",
+    "reason": "Reached B in wheel mode",
+    "simulation_duration_s": "93",
+    "position_error_m": "0.0122877",
+    "yaw_error_rad": "0.00193763",
+    "upper_distance_m": "6.07172",
+    "final_v_mps": "0",
+    "final_w_rps": "0",
+    "final_mode": "wheel"
+  },
+  "videos": [
+    {
+      "file": "三画面同步演示_4K.mp4",
+      "width": 3840,
+      "height": 2160,
+      "fps": 30,
+      "frames": 2910,
+      "duration_s": 97.0,
+      "bytes": 28237646,
+      "codec": "h264",
+      "full_decode_pass": true,
+      "sha256": "ae7edcef019dbf1660d6dc38a86105a688ff41e35f984a69f210124b4df83bdd"
+    },
+    {
+      "file": "三画面同步演示_1080p.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30,
+      "frames": 2910,
+      "duration_s": 97.0,
+      "bytes": 8629280,
+      "codec": "h264",
+      "full_decode_pass": true,
+      "sha256": "c0a5edcc77604b85e2ed5ecad7b746200ba6ce715e810cc02fbc65444b2b4c7a"
+    }
+  ],
+  "sync_record_directory": "视频记录",
+  "render_intermediates_archive": {
+    "zip": "/home/hfun/norin/lab_整理前_20261015_154135.zip",
+    "member_directory": "lab/src/wheel_leg_demo/doc/results/4_自动演示/展示素材/"
+  }
+}

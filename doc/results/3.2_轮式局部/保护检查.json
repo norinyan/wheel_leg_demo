@@ -1,0 +1,7 @@
+{
+  "command_timeout_stop": true,
+  "single_command_travel_m": 0.025579199999994806,
+  "stop_local_brakes": true,
+  "stage2_morph_regression": true,
+  "reset_at_A": true
+}

@@ -1,0 +1,2 @@
+state,reason,simulation_duration_s,position_error_m,yaw_error_rad,upper_distance_m,final_v_mps,final_w_rps,final_mode
+FAILED,"TASK_OR_STAGE_TIMEOUT",1.5,13.4106,0.302528,0,0,0,wheel

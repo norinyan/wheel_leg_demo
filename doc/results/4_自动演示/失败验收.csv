@@ -1,0 +1,5 @@
+case,state,reason,no_later_phase,passed
+invalid_global,FAILED,GLOBAL_PLANNING: INVALID_ENDPOINT_OR_CLEARANCE,True,True
+blocked_lower,FAILED,WHEEL_LOCAL: FAILED_BLOCKED,True,True
+blocked_foot,FAILED,FOOT_PLANNING: NO_FEASIBLE_FOOTSTEPS,True,True
+timeout,FAILED,TASK_OR_STAGE_TIMEOUT,True,True

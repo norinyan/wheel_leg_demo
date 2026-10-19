@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-15",
+  "frame": "world",
+  "feedback": "Gazebo synchronized poses; kinematic execution",
+  "normal_runs": [
+    {
+      "case": "run_1",
+      "state": "DONE",
+      "simulation_duration_s": "92.3",
+      "position_error_m": "0.00529158",
+      "yaw_error_deg": 0.10678214427853153,
+      "upper_distance_m": "6.08247",
+      "wheel_checks_passed": true,
+      "foot_checks_passed": true,
+      "phase_order_passed": true,
+      "continuous_motion_passed": true,
+      "passed": true
+    },
+    {
+      "case": "run_2",
+      "state": "DONE",
+      "simulation_duration_s": "92.5",
+      "position_error_m": "0.0152485",
+      "yaw_error_deg": 0.13393060348521532,
+      "upper_distance_m": "6.07241",
+      "wheel_checks_passed": true,
+      "foot_checks_passed": true,
+      "phase_order_passed": true,
+      "continuous_motion_passed": true,
+      "passed": true
+    },
+    {
+      "case": "run_3",
+      "state": "DONE",
+      "simulation_duration_s": "91.9",
+      "position_error_m": "0.0118637",
+      "yaw_error_deg": 0.11184021569394643,
+      "upper_distance_m": "6.07616",
+      "wheel_checks_passed": true,
+      "foot_checks_passed": true,
+      "phase_order_passed": true,
+      "continuous_motion_passed": true,
+      "passed": true
+    }
+  ],
+  "consecutive_success_count": 3,
+  "failure_cases": [
+    {
+      "case": "invalid_global",
+      "state": "FAILED",
+      "reason": "GLOBAL_PLANNING: INVALID_ENDPOINT_OR_CLEARANCE",
+      "no_later_phase": true,
+      "passed": true
+    },
+    {
+      "case": "blocked_lower",
+      "state": "FAILED",
+      "reason": "WHEEL_LOCAL: FAILED_BLOCKED",
+      "no_later_phase": true,
+      "passed": true
+    },
+    {
+      "case": "blocked_foot",
+      "state": "FAILED",
+      "reason": "FOOT_PLANNING: NO_FEASIBLE_FOOTSTEPS",
+      "no_later_phase": true,
+      "passed": true
+    },
+    {
+      "case": "timeout",
+      "state": "FAILED",
+      "reason": "TASK_OR_STAGE_TIMEOUT",
+      "no_later_phase": true,
+      "passed": true
+    }
+  ],
+  "protection": {
+    "pause_holds_pose_and_task_phase": true,
+    "stop_while_paused_cancels_task_and_holds_on_resume": true,
+    "reset_running_task_at_A_without_auto_resume": true,
+    "stage_timeout_is_failure_without_advancing": true,
+    "stop_during_planned_climb_holds_pose_and_cancels_later_phases": true,
+    "reset_keeps_executor_idle_ready": true
+  },
+  "verification": "Wheel footprint sweeps <=5mm / <=0.01rad; independent foot URDF FK + OBB SAT; phase order, stop/alignment and full-body pose continuity checks",
+  "sha256": {
+    "src/global_planner.cpp": "73d25109e455fd30fe8a100b084116b0d20f5de236564816d1b8ee6d6e47b2fd",
+    "src/task_runner.cpp": "6bf6293a814528a1efa4b4d506c19e6df711d912176a5c5ce446832a6bbd0458",
+    "src/foot_local.cpp": "f97844ed61e64a110fba921a4bcfea4fc8566b118e93641c4a7201d48e23817e",
+    "src/demo_node.cpp": "1c4542faa4af2f04b9b1ac72abc745ead0e7f326bdd151a18b016bf56a5ac49e",
+    "src/wheel_local.cpp": "0ceefdd197ec840a78a483bff086aa8b27c3e87f3cf59347b5b8809d5f7dd15e",
+    "src/teb_optimizer.cpp": "fe8c411769f9e60bd618b6629acc63e7df8f372131e3e1dff293eca1d544a355",
+    "include/wheel_leg_demo/teb_optimizer.hpp": "a0d43b8db87d53a6bfcc09e5de9dffe44d43333d358780ad2215b95ae080241c",
+    "include/wheel_leg_demo/foot_local.hpp": "acbb6f5ced5dd994e181cfc0b994d41c577a7b5ba9866434e292cf171fd9493b",
+    "include/wheel_leg_demo/task_runner.hpp": "17782854d5efb8ae820609da44c25113b09b985368c5bb692fec78313489d5fc",
+    "include/wheel_leg_demo/wheel_local.hpp": "f6114bc40ec966b4edb991a49b40e8e133ec6384753154db117cd77542b74049",
+    "include/wheel_leg_demo/foot_planner.hpp": "115b21a3167b6bada6612a16ce3efc23e7c6aac15b5608649e1e856fa93fdab7",
+    "launch/demo.launch.py": "04556c221ca3e20527e309dc9f18d052eafd0942d1a75756910cfb701833c1c1",
+    "launch/planning.launch.py": "12e9ac692801f50587741a7baaa6349b097dcb86c5426465ee4d4c545e476a0f",
+    "config/demo.yaml": "79591d9a788bfda2ad6e54da8549c825fe5295a9ecce48fa7d1f6683395988e1",
+    "CMakeLists.txt": "7805900f1b246d2a656baad77e4db4f5a79062fb5940551a5dd7d46978bf772f",
+    "package.xml": "ddde5ac92443c33b068d7f809be80b2339e0bbc61724aa9e323e59ce68a962e8"
+  },
+  "video": {
+    "case": "run_2",
+    "file": "演示.mp4",
+    "fps": 5,
+    "frames": 464,
+    "scope": "Gazebo window only; complete automatic run",
+    "sha256": "f86bf042f3e2636bb691e74325f775bbc8b5001388e6c506c4cf8f5f5fc3ac66",
+    "available_in_working_tree": false,
+    "archive": {
+      "zip": "/home/hfun/norin/lab_整理前_20261015_154135.zip",
+      "member": "lab/src/wheel_leg_demo/doc/results/4_自动演示/演示.mp4"
+    },
+    "replacement": "三画面同步演示_4K.mp4 / 三画面同步演示_1080p.mp4"
+  }
+}

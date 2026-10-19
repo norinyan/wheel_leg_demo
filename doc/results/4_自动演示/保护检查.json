@@ -1,0 +1,8 @@
+{
+  "pause_holds_pose_and_task_phase": true,
+  "stop_while_paused_cancels_task_and_holds_on_resume": true,
+  "reset_running_task_at_A_without_auto_resume": true,
+  "stage_timeout_is_failure_without_advancing": true,
+  "stop_during_planned_climb_holds_pose_and_cancels_later_phases": true,
+  "reset_keeps_executor_idle_ready": true
+}

@@ -1,0 +1,2 @@
+state,position_error_m,yaw_error_rad,simulation_duration_s,max_actual_v,max_actual_w,min_conservative_clearance_m
+DONE,0.0122877,0.00234781,24.2,0.3,0.547796,0.0737833

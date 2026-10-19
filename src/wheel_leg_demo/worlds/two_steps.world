@@ -1,0 +1,754 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<sdf version="1.6">
+  <world name="two_steps">
+    <gravity>0 0 -9.81</gravity>
+    <physics name="ode" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>.6 .6 .6 1</ambient>
+      <background>.7 .8 .9 1</background>
+    </scene>
+    <gui>
+      <camera name="user_camera">
+        <pose>2.35 -17 14 0 0.70 1.57079632679</pose>
+      </camera>
+    </gui>
+    <light name="sun" type="directional">
+      <pose>0 0 5 0 0 0</pose>
+      <diffuse>.8 .8 .8 1</diffuse>
+      <direction>-.5 .3 -1</direction>
+    </light>
+    <plugin name="simulation_state" filename="libgazebo_ros_state.so">
+      <ros>
+        <namespace>/simulation</namespace>
+      </ros>
+      <update_rate>20</update_rate>
+    </plugin>
+    <model name="lower_ground">
+      <static>true</static>
+      <pose>-2 0 -.05 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 6 .1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 6 .1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.55 .55 .55 1</ambient>
+            <diffuse>.55 .55 .55 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="step_1">
+      <static>true</static>
+      <pose>2.175 0 .085 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>.35 4 .17</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>.35 4 .17</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.3 .5 .7 1</ambient>
+            <diffuse>.3 .5 .7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="step_2">
+      <static>true</static>
+      <pose>2.525 0 .17 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>.35 4 .34</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>.35 4 .34</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.25 .4 .6 1</ambient>
+            <diffuse>.25 .4 .6 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="upper_platform">
+      <static>true</static>
+      <pose>6.7 0 .17 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 6 .34</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 6 .34</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.4 .6 .4 1</ambient>
+            <diffuse>.4 .6 .4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="lower_obstacle">
+      <static>true</static>
+      <pose>-1.5 -0.9 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="box">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.8 0.6</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="box">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.8 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.85 .23 .12 1</ambient>
+            <diffuse>.85 .23 .12 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="upper_obstacle">
+      <static>true</static>
+      <pose>6.2 -0.9 0.64 0 0 0</pose>
+      <link name="link">
+        <collision name="box">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.8 0.6</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="box">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.8 0.6</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.85 .23 .12 1</ambient>
+            <diffuse>.85 .23 .12 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="waypoint_A">
+      <static>true</static>
+      <pose>-4.5 -0.9 0.007 0 0 0</pose>
+      <link name="link">
+        <visual name="outline0">
+          <pose>0 0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline1">
+          <pose>0 -0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline2">
+          <pose>0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline3">
+          <pose>-0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="heading">
+          <pose>0.55 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow0">
+          <pose>0.74 0.055 0.01 0 0 -0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow1">
+          <pose>0.74 -0.055 0.01 0 0 0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label0">
+          <pose>-0.15 -0.725 0.01 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.45 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label1">
+          <pose>0.0 -0.49999999999999994 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.3 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label2">
+          <pose>0.15 -0.725 0.01 0 0 -1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.45 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label3">
+          <pose>0.0 -0.73 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.3 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .9 1</ambient>
+            <diffuse>.1 .8 .9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="waypoint_E">
+      <static>true</static>
+      <pose>1.6 -0.9 0.007 0 0 0</pose>
+      <link name="link">
+        <visual name="outline0">
+          <pose>0 0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline1">
+          <pose>0 -0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline2">
+          <pose>0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline3">
+          <pose>-0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="heading">
+          <pose>0.55 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow0">
+          <pose>0.74 0.055 0.01 0 0 -0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow1">
+          <pose>0.74 -0.055 0.01 0 0 0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label0">
+          <pose>-0.15 -0.725 0.01 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.45 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label1">
+          <pose>0.0 -0.95 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.3 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label2">
+          <pose>-0.024999999999999994 -0.73 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label3">
+          <pose>0.0 -0.49999999999999994 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.3 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>1 .55 .05 1</ambient>
+            <diffuse>1 .55 .05 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="waypoint_X">
+      <static>true</static>
+      <pose>3.3 -0.9 0.34700000000000003 0 0 0</pose>
+      <link name="link">
+        <visual name="outline0">
+          <pose>0 0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline1">
+          <pose>0 -0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline2">
+          <pose>0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline3">
+          <pose>-0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="heading">
+          <pose>0.55 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow0">
+          <pose>0.74 0.055 0.01 0 0 -0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow1">
+          <pose>0.74 -0.055 0.01 0 0 0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label0">
+          <pose>0.0 -0.725 0.01 0 0 0.982793723247329</pose>
+          <geometry>
+            <box>
+              <size>0.5408326913195984 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label1">
+          <pose>0.0 -0.725 0.01 0 0 -0.982793723247329</pose>
+          <geometry>
+            <box>
+              <size>0.5408326913195984 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.65 .2 .9 1</ambient>
+            <diffuse>.65 .2 .9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="waypoint_B">
+      <static>true</static>
+      <pose>9.0 -0.9 0.34700000000000003 0 0 0</pose>
+      <link name="link">
+        <visual name="outline0">
+          <pose>0 0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline1">
+          <pose>0 -0.39 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.018 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline2">
+          <pose>0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="outline3">
+          <pose>-0.3 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.018 0.78 0.006</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="heading">
+          <pose>0.55 0 0.01 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow0">
+          <pose>0.74 0.055 0.01 0 0 -0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="arrow1">
+          <pose>0.74 -0.055 0.01 0 0 0.65</pose>
+          <geometry>
+            <box>
+              <size>0.18 0.035 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label0">
+          <pose>-0.15 -0.725 0.01 0 0 1.5707963267948966</pose>
+          <geometry>
+            <box>
+              <size>0.45 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label1">
+          <pose>-0.024999999999999994 -0.95 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label2">
+          <pose>0.12500000000000003 -0.8999999999999999 0.01 0 0 1.1071487177940906</pose>
+          <geometry>
+            <box>
+              <size>0.1118033988749895 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label3">
+          <pose>0.12500000000000003 -0.7899999999999999 0.01 0 0 1.965587446494658</pose>
+          <geometry>
+            <box>
+              <size>0.12999999999999998 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label4">
+          <pose>-0.024999999999999994 -0.73 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label5">
+          <pose>0.12500000000000003 -0.6749999999999999 0.01 0 0 1.1441688336680207</pose>
+          <geometry>
+            <box>
+              <size>0.12083045973594572 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label6">
+          <pose>0.12500000000000003 -0.5599999999999999 0.01 0 0 1.965587446494658</pose>
+          <geometry>
+            <box>
+              <size>0.12999999999999998 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+        <visual name="label7">
+          <pose>-0.024999999999999994 -0.49999999999999994 0.01 0 0 0.0</pose>
+          <geometry>
+            <box>
+              <size>0.25 0.045 0.012</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>.1 .8 .2 1</ambient>
+            <diffuse>.1 .8 .2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

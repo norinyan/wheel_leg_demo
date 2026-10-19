@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-15",
+  "implementation": "Reduced discrete TEB: jointly optimized SE2 poses and time intervals; Ceres 2.0.0. No upstream Nav2 TEB binary installed.",
+  "frame": "world",
+  "execution": "Gazebo kinematic differential-drive integration, not dynamic wheel contact control",
+  "limits": {
+    "v_mps": 0.3,
+    "w_rps": 0.8,
+    "a_mps2": 0.3,
+    "alpha_rps2": 1.0,
+    "margin_m": 0.05
+  },
+  "verification": "Independent rotated-rectangle sweep at <=5mm translation / <=0.01rad yaw, against recorded obstacle geometry and platform boundaries; finite-difference acceleration tolerance 1e-4.",
+  "cases": [
+    {
+      "case": "lower_added_obstacle",
+      "state": "DONE",
+      "position_error_m": "0.0138894",
+      "yaw_error_deg": "0.0036576938091797597",
+      "simulation_duration_s": "25.8",
+      "min_footprint_clearance_m": "0.12947202996666932",
+      "collision_samples": "0",
+      "boundary_samples": "0",
+      "max_measured_accel": "0.3000000000000085",
+      "max_measured_alpha": "1.0000039814814847",
+      "passed": "True"
+    },
+    {
+      "case": "lower_baseline",
+      "state": "DONE",
+      "position_error_m": "0.0254104",
+      "yaw_error_deg": "0.019622887750758485",
+      "simulation_duration_s": "23.5",
+      "min_footprint_clearance_m": "0.16722811140787627",
+      "collision_samples": "0",
+      "boundary_samples": "0",
+      "max_measured_accel": "0.3000000000000056",
+      "max_measured_alpha": "1.000002803738324",
+      "passed": "True"
+    },
+    {
+      "case": "lower_blocked",
+      "state": "FAILED_BLOCKED",
+      "position_error_m": "5.77454",
+      "yaw_error_deg": "24.129258105241924",
+      "simulation_duration_s": "4.3",
+      "min_footprint_clearance_m": "1.9402916837554576",
+      "collision_samples": "0",
+      "boundary_samples": "0",
+      "max_measured_accel": "0.30000000000000093",
+      "max_measured_alpha": "1.0000000000000004",
+      "passed": "True"
+    },
+    {
+      "case": "upper_baseline",
+      "state": "DONE",
+      "position_error_m": "0.00858436",
+      "yaw_error_deg": "0.05687075942065428",
+      "simulation_duration_s": "23.9",
+      "min_footprint_clearance_m": "0.16738971385008425",
+      "collision_samples": "0",
+      "boundary_samples": "0",
+      "max_measured_accel": "0.3000000000000085",
+      "max_measured_alpha": "1.0000045871559635",
+      "passed": "True"
+    },
+    {
+      "case": "upper_blocked",
+      "state": "FAILED_BLOCKED",
+      "position_error_m": "5.53733",
+      "yaw_error_deg": "21.625948202535845",
+      "simulation_duration_s": "3.9",
+      "min_footprint_clearance_m": "2.0145843163985804",
+      "collision_samples": "0",
+      "boundary_samples": "0",
+      "max_measured_accel": "0.3000000000000003",
+      "max_measured_alpha": "1.0000000000000013",
+      "passed": "True"
+    }
+  ],
+  "protection": {
+    "command_timeout_stop": true,
+    "single_command_travel_m": 0.025579199999994806,
+    "stop_local_brakes": true,
+    "stage2_morph_regression": true,
+    "reset_at_A": true
+  },
+  "sha256": {
+    "src/global_planner.cpp": "7bfcd600a619e519383e3b8614c0f211107f540b4bc45867d9fb2cfa26dd84b4",
+    "src/wheel_local.cpp": "fe21859294ffa09b02cee60e7bee92565ec534d742a07fba958396343be59a89",
+    "src/teb_optimizer.cpp": "fe8c411769f9e60bd618b6629acc63e7df8f372131e3e1dff293eca1d544a355",
+    "src/demo_node.cpp": "b9577078e16d9b3de77a48f881ce8e2ddc90c5e8bfc9b2d2fc851878a524008f",
+    "include/wheel_leg_demo/teb_optimizer.hpp": "a0d43b8db87d53a6bfcc09e5de9dffe44d43333d358780ad2215b95ae080241c",
+    "include/wheel_leg_demo/wheel_local.hpp": "3e9cda526cefd5ca5de848b62bde76115de0e5239e995961a0fcf11db0886cef",
+    "config/demo.yaml": "080d047d7421a882e4151713524171ba20541463975e5b551d81fc86c832efa4",
+    "launch/demo.launch.py": "f105b845e63ad4d2eb2d3b22bbe808235a0c1da1cab1118cb7784124fd7d27f3",
+    "launch/planning.launch.py": "9da2b8bdc26c37e78779f5da9fafab363cc995acdacdf4420eaef7f18d9ae514",
+    "CMakeLists.txt": "dbf09f8c2df92da681a96de75edc7c996a6638f856d1766a9853f06198c9557e",
+    "package.xml": "34c5ba0cbd320678885e5cd2f5184796d97d1b0a8cf1b38d44a8563a477598ee"
+  },
+  "sources": [
+    "https://github.com/rst-tu-dortmund/teb_local_planner/tree/ros2-master",
+    "https://github.com/danielyousef/nav2_teb_controller",
+    "https://raw.githubusercontent.com/gazebosim/gazebo/gazebo11/gazebo/rendering/Scene.cc"
+  ]
+}

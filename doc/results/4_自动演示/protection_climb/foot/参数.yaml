@@ -1,0 +1,16 @@
+frame: world
+feedback: Gazebo simulation
+algorithm: footstep_A_star_and_piecewise_quintic
+resolution: 0.05
+max_step: 0.5
+edge_margin: 0.025
+swing_clearance: 0.08
+step_duration: 4.5
+sample_dt: 0.02
+max_foot_v: 0.8
+max_foot_a: 3
+max_body_v: 0.3
+max_body_a: 1
+max_joint_v: 3
+max_joint_a: 20
+block_first_tread: false

@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-15",
+  "frame": "world",
+  "distance_unit": "m",
+  "angle_unit": "rad",
+  "path_height": "terrain reference, not robot body or foot trajectory",
+  "map": "known simulation geometry",
+  "checks": {
+    "cases": [
+      "baseline",
+      "alternate",
+      "blocked_lower",
+      "blocked_upper",
+      "invalid_goal"
+    ],
+    "path_mode_indices": "passed",
+    "invalid_input_clears_path": "passed",
+    "malformed_goal_does_not_crash": "passed",
+    "baseline_restored": "passed"
+  },
+  "sha256": {
+    "src/global_planner.cpp": "30fce315660da1d5dd14a49f0eb7b83273074a6bd2fb6ead40bae62af7496302",
+    "launch/planning.launch.py": "479e861bda5a1bde201c8efab3ec4e5a91b4b8c6faa0ddbffe51d228b3cdfa3f",
+    "config/demo.yaml": "2694e36d5ab688468b815e0a33dde658da9cc279df04e12821c291ffdd8c0e70",
+    "worlds/two_steps.world": "c1f2dcf4ca4efd897e8ead5207f5b5c3e9fb4f845608578e2ea3391668dc3c9d",
+    "CMakeLists.txt": "99540d1c8199e97b6d8327bb7cb90f9d6f7d01b745d7faafe4ee88995ac81123",
+    "package.xml": "509d96a18b88c28c5bc6d65327a01a8f48222843a958f45dd1815e7c81a3f57b"
+  }
+}

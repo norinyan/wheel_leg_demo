@@ -1,0 +1,5 @@
+point,frame,x_m,y_m,ground_z_m,yaw_rad
+A,world,-4.5,-0.9,0.0,0.0
+E,world,1.6,-0.9,0.0,0.0
+X,world,3.3,-0.9,0.34,0.0
+B,world,9.0,-0.9,0.34,0.0

@@ -1,0 +1,2 @@
+state,reason,simulation_duration_s,position_error_m,yaw_error_rad,upper_distance_m,final_v_mps,final_w_rps,final_mode
+STOPPED,"USER_STOP",29.7,7.41425,0.000455048,0,0,0,leg

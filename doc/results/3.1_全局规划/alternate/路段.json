@@ -1,0 +1,1 @@
+{"frame":"world","success":true,"sections":[{"from":"A","to":"E","mode":"wheel","first_index":0,"point_count":4,"horizontal_length_m":5.95968},{"from":"E","to":"X","mode":"leg","first_index":4,"point_count":6,"horizontal_length_m":1.7},{"from":"X","to":"B","mode":"wheel","first_index":10,"point_count":3,"horizontal_length_m":5.53677}],"reason":"OK"}

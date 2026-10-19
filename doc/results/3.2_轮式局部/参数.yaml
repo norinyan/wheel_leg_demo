@@ -1,0 +1,73 @@
+# World frame; metres/radians. start is body pose; waypoints are ground projections.
+scene:
+  frame: world
+  start: [-4.5, -0.9, 0.32, 0.0]
+  goal: [9.0, -0.9, 0.34, 0.0]
+  lower_bounds: [-6.0, 2.0, -3.0, 3.0]
+  upper_bounds: [2.7, 10.7, -3.0, 3.0]
+  stair:
+    start_x: 2.0
+    count: 2
+    rise: 0.17
+    tread: 0.35
+    width: 4.0
+    entry: [1.6, -0.9]
+    exit: [3.3, -0.9]
+  obstacles:
+  - name: lower_obstacle
+    center: [-1.5, -0.9, 0.3]
+    size: [0.6, 0.8, 0.6]
+  - name: upper_obstacle
+    center: [6.2, -0.9, 0.64]
+    size: [0.6, 0.8, 0.6]
+  waypoints:
+    A: [-4.5, -0.9, 0.0, 0.0]
+    E: [1.6, -0.9, 0.0, 0.0]
+    X: [3.3, -0.9, 0.34, 0.0]
+    B: [9.0, -0.9, 0.34, 0.0]
+robot:
+  wheel_radius: 0.14
+  wheel_track: 0.42
+  arm_segment_length: 0.28
+  shoulder_offset: [0.06, 0.285, 0.06]
+  folded_shoulder_pitch: 1.45
+  folded_elbow_pitch: -2.55
+  elbow_lateral_offset: 0.05
+  foot_size: [0.18, 0.1, 0.035]
+  foot_center_offset_x: 0.05
+  wheel_mode_width: 0.78
+  wheel_mode_length: 0.6
+animation:
+  morph_duration: 4.0
+  drive_distance: 1.6
+  drive_speed: 0.3
+  step_duration: 2.0
+  swing_clearance: 0.18
+  leg_body_height: 0.43
+  wheel_lift: 0.13
+  platform_footholds: [2.9, 3.12]
+
+global_planning:
+  resolution: 0.05
+  safety_margin: 0.05
+  use_feedback_start: true
+  output_dir: /root/Projects/src/wheel_leg_demo/doc/results/3.1_全局规划/baseline
+
+# Stage 3.2: reduced TEB with the existing Ceres 2.0 solver. SI units.
+wheel_local:
+  max_v: 0.30
+  max_w: 0.80
+  max_a: 0.30
+  max_alpha: 1.0
+  safety_margin: 0.05
+  horizon: 2.2
+  spacing: 0.15
+  iterations: 30
+  position_tolerance: 0.055
+  yaw_tolerance: 0.035
+  stop_v: 0.012
+  stop_w: 0.025
+  feedback_timeout: 0.5
+  segment_timeout: 100.0
+  blocked_timeout: 3.0
+  output_dir: /root/Projects/src/wheel_leg_demo/doc/results/3.2_轮式局部

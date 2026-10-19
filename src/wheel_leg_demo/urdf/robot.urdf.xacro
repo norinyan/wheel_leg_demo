@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot name="wheel_leg_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Stage 1 static display. Compact wheel/leg proportions informed by TITA; concept keeps separate arms.
+       Inertias are placeholders; no balance or torque control is implemented. -->
+  <xacro:macro name="box_link" params="name size center material">
+    <link name="${name}">
+      <visual><origin xyz="${center}"/><geometry><box size="${size}"/></geometry></visual>
+      <collision><origin xyz="${center}"/><geometry><box size="${size}"/></geometry></collision>
+      <inertial><mass value="1"/><inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/></inertial>
+    </link>
+    <gazebo reference="${name}"><material>${material}</material></gazebo>
+  </xacro:macro>
+  <xacro:macro name="round_link" params="name radius length center rpy material">
+    <link name="${name}">
+      <visual><origin xyz="${center}" rpy="${rpy}"/><geometry><cylinder radius="${radius}" length="${length}"/></geometry></visual>
+      <collision><origin xyz="${center}" rpy="${rpy}"/><geometry><cylinder radius="${radius}" length="${length}"/></geometry></collision>
+      <inertial><mass value="1"/><inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/></inertial>
+    </link>
+    <gazebo reference="${name}"><material>${material}</material></gazebo>
+  </xacro:macro>
+  <link name="base_frame"/>
+  <joint name="base_frame_joint" type="fixed"><parent link="base_frame"/><child link="base_link"/></joint>
+  <xacro:box_link name="base_link" size="0.54 0.30 0.18" center="0 0 0" material="Gazebo/Blue"/>
+  <xacro:box_link name="front_marker" size="0.02 0.18 0.04" center="0 0 0" material="Gazebo/Turquoise"/>
+  <joint name="front_marker_joint" type="fixed"><parent link="base_link"/><child link="front_marker"/><origin xyz="0.285 0 0.025"/></joint>
+  <xacro:box_link name="wheel_carrier" size="0.045 0.42 0.035" center="0 0 0" material="Gazebo/Grey"/>
+  <joint name="wheel_lift_joint" type="prismatic">
+    <parent link="base_link"/><child link="wheel_carrier"/><origin xyz="0 0 -0.18"/>
+    <axis xyz="0 0 1"/><limit lower="0" upper="0.22" effort="1" velocity="1"/>
+  </joint>
+  <xacro:macro name="wheel_and_arm" params="side sign">
+    <link name="${side}_wheel">
+      <visual><origin rpy="1.57079632679 0 0"/><geometry><cylinder radius="0.14" length="0.08"/></geometry></visual>
+      <collision><origin rpy="1.57079632679 0 0"/><geometry><cylinder radius="0.14" length="0.08"/></geometry></collision>
+      <inertial><mass value="1"/><inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/></inertial>
+    </link>
+    <gazebo reference="${side}_wheel"><material>Gazebo/Black</material></gazebo>
+    <joint name="${side}_wheel_joint" type="continuous">
+      <parent link="wheel_carrier"/><child link="${side}_wheel"/><origin xyz="0 ${sign * 0.21} 0"/>
+      <axis xyz="0 1 0"/><limit effort="1" velocity="1"/>
+    </joint>
+    <xacro:round_link name="${side}_shoulder" radius="0.037" length="0.056" center="0 0 0" rpy="1.57079632679 0 0" material="Gazebo/Grey"/>
+    <joint name="${side}_shoulder_mount" type="fixed">
+      <parent link="base_link"/><child link="${side}_shoulder"/><origin xyz="0.06 ${sign * 0.285} 0.06"/>
+    </joint>
+    <!-- Shoulder bridge connects the side housing to the torso. -->
+    <xacro:box_link name="${side}_shoulder_bridge" size="0.06 0.135 0.06" center="0 0 0" material="Gazebo/Grey"/>
+    <joint name="${side}_bridge_mount" type="fixed">
+      <parent link="base_link"/><child link="${side}_shoulder_bridge"/><origin xyz="0.06 ${sign * 0.2175} 0.06"/>
+    </joint>
+    <xacro:round_link name="${side}_upper_arm" radius="0.022" length="0.21" center="0 0 -0.14" rpy="0 0 0" material="Gazebo/Blue"/>
+    <joint name="${side}_shoulder_joint" type="revolute">
+      <parent link="${side}_shoulder"/><child link="${side}_upper_arm"/><origin rpy="0 1.45 0"/>
+      <axis xyz="0 1 0"/><limit lower="-3.14" upper="3.14" effort="1" velocity="1"/>
+    </joint>
+    <xacro:round_link name="${side}_forearm" radius="0.019" length="0.16" center="0 0 -0.12" rpy="0 0 0" material="Gazebo/Blue"/>
+    <joint name="${side}_elbow_joint" type="revolute">
+      <parent link="${side}_upper_arm"/><child link="${side}_forearm"/><origin xyz="0 ${sign * 0.05} -0.28" rpy="0 -2.55 0"/>
+      <axis xyz="0 1 0"/><limit lower="-3.14" upper="3.14" effort="1" velocity="1"/>
+    </joint>
+    <xacro:round_link name="${side}_elbow" radius="0.034" length="0.102" center="0 ${-sign * 0.025} 0" rpy="1.57079632679 0 0" material="Gazebo/Grey"/>
+    <joint name="${side}_elbow_housing" type="fixed"><parent link="${side}_forearm"/><child link="${side}_elbow"/></joint>
+    <!-- Slim ankle connector reaches the heel-mounted pitch joint. -->
+    <xacro:round_link name="${side}_ankle_stem" radius="0.011" length="0.08" center="0 0 -0.24" rpy="0 0 0" material="Gazebo/Grey"/>
+    <joint name="${side}_ankle_stem_mount" type="fixed"><parent link="${side}_forearm"/><child link="${side}_ankle_stem"/></joint>
+    <xacro:box_link name="${side}_foot" size="0.18 0.10 0.035" center="0.05 0 0" material="Gazebo/DarkGrey"/>
+    <joint name="${side}_foot_joint" type="revolute">
+      <parent link="${side}_forearm"/><child link="${side}_foot"/><origin xyz="0 0 -0.28" rpy="0 1.1 0"/>
+      <axis xyz="0 1 0"/><limit lower="-6.28" upper="6.28" effort="1" velocity="1"/>
+    </joint>
+    <xacro:box_link name="${side}_wheel_spoke" size="0.20 0.008 0.015" center="0 0 0" material="Gazebo/Grey"/>
+    <joint name="${side}_wheel_spoke_mount" type="fixed"><parent link="${side}_wheel"/><child link="${side}_wheel_spoke"/><origin xyz="0 ${sign * 0.044} 0"/></joint>
+  </xacro:macro>
+  <!-- Arm rods stop short of the pivot centres; housings form the joints. -->
+  <xacro:wheel_and_arm side="left" sign="${1}"/>
+  <xacro:wheel_and_arm side="right" sign="${-1}"/>
+  <gazebo><static>true</static></gazebo>
+</robot>

@@ -1,0 +1,3 @@
+case,state,steps,simulation_duration_s,position_error_m,passed
+baseline,DONE,8,36.028,0,True
+blocked_foothold,FAILED_PLAN: NO_FEASIBLE_FOOTSTEPS,0,0,,True

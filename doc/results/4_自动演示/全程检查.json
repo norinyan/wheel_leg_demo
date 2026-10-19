@@ -1,0 +1,173 @@
+{
+  "run_1": {
+    "phase_order": true,
+    "max_body_3d_speed_mps": 0.30000000007365213,
+    "continuous_body_motion": true,
+    "wheels": [
+      {
+        "segment": "lower_task",
+        "passed": true,
+        "dense_samples": 1637,
+        "collision_samples": 0,
+        "boundary_samples": 0,
+        "min_footprint_clearance_m": 0.1394014053982402,
+        "max_v_mps": 0.3,
+        "max_w_rps": 0.565317,
+        "max_a_mps2": 0.3000000000000085,
+        "max_alpha_rps2": 1.0000037037036986
+      },
+      {
+        "segment": "upper_task",
+        "passed": true,
+        "dense_samples": 1582,
+        "collision_samples": 0,
+        "boundary_samples": 0,
+        "min_footprint_clearance_m": 0.16505620163411985,
+        "max_v_mps": 0.3,
+        "max_w_rps": 0.585096,
+        "max_a_mps2": 0.3000046296296281,
+        "max_alpha_rps2": 1.0000046296296246
+      }
+    ],
+    "feet": {
+      "planned_samples": 1825,
+      "actual_samples": 334,
+      "self_collision_pairs_per_sample": 34,
+      "self_collision_exclusions": [
+        "wheel_carrier/left_wheel: adjacent axle joint",
+        "wheel_carrier/right_wheel: adjacent axle joint"
+      ],
+      "robot_geometry": "URDF collision primitives enclosed by oriented boxes; independent FK and SAT; allowed surface contact tolerance 1e-7 m",
+      "environment_collision_samples": 0,
+      "major_self_collision_samples": 0,
+      "unreachable_samples": 0,
+      "min_landing_edge_margin_m": 0.0394275,
+      "max_body_speed_mps": 0.12596234049610314,
+      "max_body_accel_mps2": 0.08619031562896923,
+      "max_foot_speed_mps": 0.4165827833133506,
+      "max_foot_accel_mps2": 1.1393759182007006,
+      "max_joint_speed_rps": 2.027460100936003,
+      "max_joint_accel_rps2": 8.441778350418927,
+      "max_feedback_tracking_error_m": 5.37452937672267e-05,
+      "max_landing_error_m": 0.00037369583045358817,
+      "collision_examples": [],
+      "self_collision_examples": []
+    },
+    "entry_stopped_aligned": true,
+    "both_feet_on_upper_before_fold": true
+  },
+  "run_2": {
+    "phase_order": true,
+    "max_body_3d_speed_mps": 0.30000000275798616,
+    "continuous_body_motion": true,
+    "wheels": [
+      {
+        "segment": "lower_task",
+        "passed": true,
+        "dense_samples": 1639,
+        "collision_samples": 0,
+        "boundary_samples": 0,
+        "min_footprint_clearance_m": 0.14464523732263124,
+        "max_v_mps": 0.3,
+        "max_w_rps": 0.569029,
+        "max_a_mps2": 0.3000000000000085,
+        "max_alpha_rps2": 1.000003703703715
+      },
+      {
+        "segment": "upper_task",
+        "passed": true,
+        "dense_samples": 1585,
+        "collision_samples": 0,
+        "boundary_samples": 0,
+        "min_footprint_clearance_m": 0.16492726355814422,
+        "max_v_mps": 0.3,
+        "max_w_rps": 0.575202,
+        "max_a_mps2": 0.3000009259259344,
+        "max_alpha_rps2": 1.0000044444444456
+      }
+    ],
+    "feet": {
+      "planned_samples": 1825,
+      "actual_samples": 335,
+      "self_collision_pairs_per_sample": 34,
+      "self_collision_exclusions": [
+        "wheel_carrier/left_wheel: adjacent axle joint",
+        "wheel_carrier/right_wheel: adjacent axle joint"
+      ],
+      "robot_geometry": "URDF collision primitives enclosed by oriented boxes; independent FK and SAT; allowed surface contact tolerance 1e-7 m",
+      "environment_collision_samples": 0,
+      "major_self_collision_samples": 0,
+      "unreachable_samples": 0,
+      "min_landing_edge_margin_m": 0.0383949,
+      "max_body_speed_mps": 0.1259749733525771,
+      "max_body_accel_mps2": 0.08619893445547284,
+      "max_foot_speed_mps": 0.4166438776866729,
+      "max_foot_accel_mps2": 1.1393759182007006,
+      "max_joint_speed_rps": 2.027598398660337,
+      "max_joint_accel_rps2": 8.443438906842445,
+      "max_feedback_tracking_error_m": 6.518617208506328e-05,
+      "max_landing_error_m": 8.504348416876151e-05,
+      "collision_examples": [],
+      "self_collision_examples": []
+    },
+    "entry_stopped_aligned": true,
+    "both_feet_on_upper_before_fold": true
+  },
+  "run_3": {
+    "phase_order": true,
+    "max_body_3d_speed_mps": 0.3000000000882996,
+    "continuous_body_motion": true,
+    "wheels": [
+      {
+        "segment": "lower_task",
+        "passed": true,
+        "dense_samples": 1629,
+        "collision_samples": 0,
+        "boundary_samples": 0,
+        "min_footprint_clearance_m": 0.1681625746303776,
+        "max_v_mps": 0.3,
+        "max_w_rps": 0.523782,
+        "max_a_mps2": 0.30000183486239024,
+        "max_alpha_rps2": 1.0000026851851802
+      },
+      {
+        "segment": "upper_task",
+        "passed": true,
+        "dense_samples": 1575,
+        "collision_samples": 0,
+        "boundary_samples": 0,
+        "min_footprint_clearance_m": 0.16523437028069624,
+        "max_v_mps": 0.3,
+        "max_w_rps": 0.572711,
+        "max_a_mps2": 0.3000009259259243,
+        "max_alpha_rps2": 1.0000037037036988
+      }
+    ],
+    "feet": {
+      "planned_samples": 1825,
+      "actual_samples": 334,
+      "self_collision_pairs_per_sample": 34,
+      "self_collision_exclusions": [
+        "wheel_carrier/left_wheel: adjacent axle joint",
+        "wheel_carrier/right_wheel: adjacent axle joint"
+      ],
+      "robot_geometry": "URDF collision primitives enclosed by oriented boxes; independent FK and SAT; allowed surface contact tolerance 1e-7 m",
+      "environment_collision_samples": 0,
+      "major_self_collision_samples": 0,
+      "unreachable_samples": 0,
+      "min_landing_edge_margin_m": 0.0499084,
+      "max_body_speed_mps": 0.12597642685369284,
+      "max_body_accel_mps2": 0.08619997468625876,
+      "max_foot_speed_mps": 0.41665090768666785,
+      "max_foot_accel_mps2": 1.1393759182007006,
+      "max_joint_speed_rps": 2.0276143172919694,
+      "max_joint_accel_rps2": 8.44363018438999,
+      "max_feedback_tracking_error_m": 6.912103821932192e-05,
+      "max_landing_error_m": 0.00011943228762468955,
+      "collision_examples": [],
+      "self_collision_examples": []
+    },
+    "entry_stopped_aligned": true,
+    "both_feet_on_upper_before_fold": true
+  }
+}

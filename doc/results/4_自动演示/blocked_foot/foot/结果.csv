@@ -1,0 +1,2 @@
+state,planning_success,steps,expanded,planning_wall_ms,simulation_duration_s,position_error_m,forbidden_first_tread
+FAILED_PLAN: NO_FEASIBLE_FOOTSTEPS,0,0,15,27.392,0,-1,1

@@ -1,0 +1,13 @@
+frame: world
+feedback: Gazebo simulation
+entry_yaw_tolerance_rad: 0.005
+wheel_yaw_tolerance_rad: 0.003
+stop_v_mps: 0.001
+stop_w_rps: 0.001
+stage_timeout_s: 130
+task_timeout_s: 300
+A: [-4.5, -0.9, 0, 0]
+E: [1.6, -0.9, 0, 0]
+X: [3.3, -0.9, 0.34, 0]
+B: [9, -0.9, 0.34, 0]
+first_tread_forbidden: false

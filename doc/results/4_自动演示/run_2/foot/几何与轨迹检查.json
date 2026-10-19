@@ -1,0 +1,24 @@
+{
+  "planned_samples": 1825,
+  "actual_samples": 335,
+  "self_collision_pairs_per_sample": 34,
+  "self_collision_exclusions": [
+    "wheel_carrier/left_wheel: adjacent axle joint",
+    "wheel_carrier/right_wheel: adjacent axle joint"
+  ],
+  "robot_geometry": "URDF collision primitives enclosed by oriented boxes; independent FK and SAT; allowed surface contact tolerance 1e-7 m",
+  "environment_collision_samples": 0,
+  "major_self_collision_samples": 0,
+  "unreachable_samples": 0,
+  "min_landing_edge_margin_m": 0.0383949,
+  "max_body_speed_mps": 0.1259749733525771,
+  "max_body_accel_mps2": 0.08619893445547284,
+  "max_foot_speed_mps": 0.4166438776866729,
+  "max_foot_accel_mps2": 1.1393759182007006,
+  "max_joint_speed_rps": 2.027598398660337,
+  "max_joint_accel_rps2": 8.443438906842445,
+  "max_feedback_tracking_error_m": 6.518617208506328e-05,
+  "max_landing_error_m": 8.504348416876151e-05,
+  "collision_examples": [],
+  "self_collision_examples": []
+}

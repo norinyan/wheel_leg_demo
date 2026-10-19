@@ -1,0 +1,8 @@
+{
+  "pause_holds_pose": true,
+  "stop_holds_pose": true,
+  "stop_invalidates_plan": true,
+  "reset_at_A": true,
+  "footstep_unit_checks": "9120 dense interpolated poses, C2 endpoints, blocked tread, insufficient step reach and penetration",
+  "upper_morph_roundtrip": true
+}

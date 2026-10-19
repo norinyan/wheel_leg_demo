@@ -1,0 +1,2 @@
+state,reason,simulation_duration_s,position_error_m,yaw_error_rad,upper_distance_m,final_v_mps,final_w_rps,final_mode
+FAILED,"FOOT_PLANNING: NO_FEASIBLE_FOOTSTEPS",28.1,7.42172,2.7159e-05,0,0,0,leg

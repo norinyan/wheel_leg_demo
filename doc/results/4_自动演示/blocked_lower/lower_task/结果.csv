@@ -1,0 +1,2 @@
+state,position_error_m,yaw_error_rad,simulation_duration_s,max_actual_v,max_actual_w,min_conservative_clearance_m
+FAILED_BLOCKED,5.77476,0.413835,4.4,0.3,0.569113,1.8817

@@ -1,0 +1,6 @@
+case,planning_success,reason,horizontal_length_m,wall_ms,independent_footprint_samples,conservative_circle_clearance_m,expected_result_pass
+baseline,1,OK,14.2661,12.5804,2523,0.05761949121830373,True
+alternate,1,OK,13.1965,9.24956,2308,0.05606581705540675,True
+blocked_lower,0,NO_PATH,0,12.3397,0,,True
+blocked_upper,0,NO_PATH,0,15.8461,0,,True
+invalid_goal,0,INVALID_ENDPOINT_OR_CLEARANCE,0,6.48578,0,,True

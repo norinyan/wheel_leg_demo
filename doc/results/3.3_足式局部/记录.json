@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-15",
+  "frame": "world",
+  "feedback": "Gazebo synchronized model and sole poses (simulation)",
+  "scope": "Planar alternating footstep A*, C2 piecewise quintic swing and body reference; kinematic display, no balance/contact dynamics",
+  "cases": [
+    {
+      "case": "baseline",
+      "state": "DONE",
+      "steps": 8,
+      "simulation_duration_s": "36.028",
+      "position_error_m": "0",
+      "passed": true
+    },
+    {
+      "case": "blocked_foothold",
+      "state": "FAILED_PLAN: NO_FEASIBLE_FOOTSTEPS",
+      "steps": 0,
+      "simulation_duration_s": 0,
+      "position_error_m": "",
+      "passed": true
+    }
+  ],
+  "independent_geometry": {
+    "planned_samples": 1825,
+    "actual_samples": 334,
+    "self_collision_pairs_per_sample": 34,
+    "self_collision_exclusions": [
+      "wheel_carrier/left_wheel: adjacent axle joint",
+      "wheel_carrier/right_wheel: adjacent axle joint"
+    ],
+    "robot_geometry": "URDF collision primitives enclosed by oriented boxes; independent FK and SAT; allowed surface contact tolerance 1e-7 m",
+    "environment_collision_samples": 0,
+    "major_self_collision_samples": 0,
+    "unreachable_samples": 0,
+    "min_landing_edge_margin_m": 0.05,
+    "max_body_speed_mps": 0.1259620087306495,
+    "max_body_accel_mps2": 0.08619009744861761,
+    "max_foot_speed_mps": 0.41658117840445846,
+    "max_foot_accel_mps2": 1.1393759182007006,
+    "max_joint_speed_rps": 2.0274564708568916,
+    "max_joint_accel_rps2": 8.44173458736734,
+    "max_feedback_tracking_error_m": 5.478149150077438e-05,
+    "max_landing_error_m": 2.7074609999955257e-05,
+    "collision_examples": [],
+    "self_collision_examples": []
+  },
+  "sha256": {
+    "src/foot_local.cpp": "8763223409df5e7f2dd08ae97fd2960af650037c2d703eabd23fff1f33fe4f05",
+    "include/wheel_leg_demo/foot_planner.hpp": "115b21a3167b6bada6612a16ce3efc23e7c6aac15b5608649e1e856fa93fdab7",
+    "include/wheel_leg_demo/foot_local.hpp": "ca51f3ba739e736c9f9878919dcf73c7cdc489581c123e4d2edfb27ceef69675",
+    "src/demo_node.cpp": "cd003eac8884e0429e3b207237b256054fa711b5ed06d95d6723ab5e30bb0968",
+    "src/global_planner.cpp": "bb250311e2f760d5a3cef25758e13b1af79c9cf775591c9e2e70d8aff724c84f",
+    "config/demo.yaml": "66b6ca15cf91eb9aa72b200e0c69c53743b25bd45c5d7afd36fd587e5c6dadf1",
+    "launch/planning.launch.py": "2ed359482d7cb80a6884df9711ee58ae002a6b30d4a6f0120bec3276b1968308",
+    "launch/demo.launch.py": "04556c221ca3e20527e309dc9f18d052eafd0942d1a75756910cfb701833c1c1",
+    "CMakeLists.txt": "669e3f745fd05d000b3ff29973822ea6ade7f54e6efa9840ab82c6af5a9044f9",
+    "package.xml": "ddde5ac92443c33b068d7f809be80b2339e0bbc61724aa9e323e59ce68a962e8",
+    "test/foot_planner_check.cpp": "9ebeb20864d2b5dbe7ad18eb4f6141f38aeb2ef7f31f95ce1964e4cf799524f1"
+  },
+  "protection": {
+    "pause_holds_pose": true,
+    "stop_holds_pose": true,
+    "stop_invalidates_plan": true,
+    "reset_at_A": true,
+    "footstep_unit_checks": "9120 dense interpolated poses, C2 endpoints, blocked tread, insufficient step reach and penetration",
+    "upper_morph_roundtrip": true
+  },
+  "gazebo_foothold_display": "Single visual-only model with eight sole links; no collision geometry"
+}
